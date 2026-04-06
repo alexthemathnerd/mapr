@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/Scripts/ruff check:*)",
+      "Bash(.venv/Scripts/mypy .)",
+      "Bash(.venv/Scripts/pytest tests/ -v)",
+      "Bash(start \"\" .venv/Scripts/python.exe -m frontend.main)"
+    ]
+  }
+}

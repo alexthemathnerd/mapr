@@ -37,6 +37,9 @@ htmlcov/
 mapr_projects/
 mapr_exports/
 
+# Claude Code
+.claude/
+
 # IDEs
 .vscode/
 .idea/

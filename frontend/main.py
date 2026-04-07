@@ -9,10 +9,13 @@ from PyQt6.QtQml import QQmlApplicationEngine
 
 def main() -> None:
     app = QGuiApplication(sys.argv)
+    app.setApplicationName("Mapr")
+    app.setOrganizationName("SiGMA")
 
     engine = QQmlApplicationEngine()
+    engine.addImportPath(str(Path(__file__).parent))
 
-    qml_path = Path(__file__).parent / "views" / "MainWindow.qml"
+    qml_path = Path(__file__).parent / "QML" / "Views" / "MainWindow.qml"
     engine.load(str(qml_path))
 
     if not engine.rootObjects():

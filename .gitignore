@@ -39,6 +39,7 @@ mapr_exports/
 
 # Claude Code
 .claude/
+/.claude
 
 # IDEs
 .vscode/

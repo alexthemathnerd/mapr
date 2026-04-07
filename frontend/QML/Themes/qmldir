@@ -1,0 +1,4 @@
+module QML.Themes
+singleton Theme 1.0 Theme.qml
+DarkTheme        1.0 DarkTheme.qml
+LightTheme       1.0 LightTheme.qml

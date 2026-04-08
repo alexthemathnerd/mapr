@@ -5,7 +5,6 @@ import QML.Themes 1.0
 Rectangle {
     color: Theme.sidebar
 
-    // Drag area — sits behind the RowLayout; window control buttons overlay it
     MouseArea {
         anchors.fill: parent
         onPressed:    Window.window.startSystemMove()
@@ -14,12 +13,12 @@ Rectangle {
     RowLayout {
         anchors {
             fill:        parent
-            leftMargin:  Theme.paddingMd
+            leftMargin:  0
             rightMargin: 0
         }
-        spacing: 10
 
-        // Hamburger — Segoe Fluent Icons U+E700
+        spacing: 0
+
         Text {
             text:           "\uE700"
             color:          Theme.textSecondary
@@ -27,11 +26,10 @@ Rectangle {
             font.pixelSize: 16
         }
 
-        // Logo placeholder
         Rectangle {
             width:  24
             height: 24
-            radius: Theme.radiusSm
+            radius: Theme.radiusSM
             color:  "#2DD4BF"
 
             Text {

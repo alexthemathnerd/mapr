@@ -8,5 +8,5 @@ QtObject {
 
     readonly property color textPrimary:   "#E8E4D8"
     readonly property color textSecondary: "#A8A89C"
-    readonly property color textMuted:     "#6A7A72"
+    readonly property color textTertiary:     "#6A7A72"
 }

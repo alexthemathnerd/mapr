@@ -16,11 +16,16 @@ QtObject {
 
     readonly property color textPrimary:   current.textPrimary
     readonly property color textSecondary: current.textSecondary
-    readonly property color textMuted:     current.textMuted
+    readonly property color textTertiary:     current.textTertiary
 
-    readonly property string fontLabel: "IBM Plex Sans"
+    readonly property string fontSans: "IBM Plex Sans"
     readonly property string fontMono:  "IBM Plex Mono"
-    readonly property int    paddingSm: 8
-    readonly property int    paddingMd: 12
-    readonly property int    radiusSm:  4
+    
+    readonly property int    paddingLG: 10
+    readonly property int    paddingMD: 5
+    readonly property int    paddingSM: 2
+
+    readonly property int    radiusLG: 7
+    readonly property int    radiusMD: 3.5
+    readonly property int    radiusSM: 1.5
 }

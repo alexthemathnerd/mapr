@@ -1,26 +1,28 @@
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
-from PyQt6.QtGui import QGuiApplication
-from PyQt6.QtQml import QQmlApplicationEngine
+if sys.platform == "win32":
+    import PySide6
+    os.add_dll_directory(str(Path(PySide6.__file__).parent))
+
+from PySide6.QtGui import QGuiApplication
+from PySide6.QtQml import QQmlApplicationEngine, QQmlDebuggingEnabler
 
 
 def main() -> None:
+    QQmlDebuggingEnabler.enableDebugging(True)
     app = QGuiApplication(sys.argv)
     app.setApplicationName("Mapr")
     app.setOrganizationName("SiGMA")
 
     engine = QQmlApplicationEngine()
-    engine.addImportPath(str(Path(__file__).parent))
+    engine.addImportPath(str(Path(__file__).parent / "View"))
 
-    qml_path = Path(__file__).parent / "QML" / "Views" / "MainWindow.qml"
+    qml_path = Path(__file__).parent / "View" / "Mapr.qml"
     engine.load(str(qml_path))
-
-    if not engine.rootObjects():
-        sys.exit(1)
-
     sys.exit(app.exec())
 
 

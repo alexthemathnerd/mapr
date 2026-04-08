@@ -1,0 +1,3 @@
+module View.Components
+WindowButton 1.0 WindowButton.qml
+WindowBar 1.0 WindowBar.qml

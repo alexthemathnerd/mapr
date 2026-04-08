@@ -1,3 +1,5 @@
 module View.Components
+BorderRectangle 1.0 BorderRectangle.qml
 WindowButton 1.0 WindowButton.qml
 WindowBar 1.0 WindowBar.qml
+Panel 1.0 Panel.qml

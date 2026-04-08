@@ -4,10 +4,13 @@ import QtQuick.Layouts
 import Themes 1.0
 import Components 1.0
 
-Rectangle {
+BorderRectangle {
     color: Theme.colorSecondary
     topLeftRadius: Theme.radiusLG
     topRightRadius: Theme.radiusLG
+    borders.color: Theme.colorBorder
+    borders.bottom.width: Theme.borderSM
+
 
     MouseArea {
         anchors.fill: parent

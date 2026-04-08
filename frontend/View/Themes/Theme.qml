@@ -27,4 +27,8 @@ QtObject {
     readonly property int    radiusLG: 7
     readonly property int    radiusMD: 4
     readonly property int    radiusSM: 2
+
+    readonly property int    borderLG: 3
+    readonly property int    borderMD: 2
+    readonly property int    borderSM: 1
 }

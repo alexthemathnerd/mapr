@@ -26,10 +26,35 @@ ApplicationWindow {
             Layout.preferredHeight: 48
         }
 
-        Rectangle {
+        RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            color: Theme.colorPrimary
+            spacing: 0
+
+            Panel {
+                id: leftPanel
+                Layout.preferredWidth: 250
+                Layout.fillHeight: true
+                isLeftCorner: true
+            }
+
+            BorderRectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                Text {
+                    anchors.centerIn: parent
+                    text: "Canvas goes here"
+                    color: Theme.textPrimary
+                }
+            }
+
+            Panel {
+                id: rightPanel
+                Layout.preferredWidth: 250
+                Layout.fillHeight: true
+                isRightCorner: true
+            }
         }
     }
 }

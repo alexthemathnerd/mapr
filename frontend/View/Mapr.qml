@@ -41,17 +41,15 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     sectionTitle: "Map Layers"
 
-                    Rectangle {
-                        border.color: Theme.colorBorder
-                        radius: Theme.radiusMD
+                    MapLayerList {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 150
-                        color: Theme.colorPrimary
+                        Layout.preferredHeight: 220
                     }
                 }
 
                 Section {
                     Layout.fillWidth: true
+
                     sectionTitle: "Parameters"
 
                     Rectangle {
@@ -66,6 +64,7 @@ ApplicationWindow {
                 Section {
                     Layout.fillWidth: true
                     sectionTitle: "History"
+                    hasBottomBorder: false
 
                     Rectangle {
                         border.color: Theme.colorBorder

@@ -4,3 +4,5 @@ WindowButton 1.0 WindowButton.qml
 WindowBar 1.0 WindowBar.qml
 Panel 1.0 Panel.qml
 Section 1.0 Section.qml
+MapLayer 1.0 MapLayer.qml
+MapLayerList 1.0 MapLayerList.qml

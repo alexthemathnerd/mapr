@@ -29,6 +29,7 @@ Item {
                 id: burgerButton
                 isLeftCorner: true
                 icon: "\uE700"
+                onClicked: Theme.toggleTheme()
             }
             
             Rectangle {

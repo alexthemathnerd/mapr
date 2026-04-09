@@ -8,4 +8,7 @@ BaseTheme {
     textPrimary: "#E8E4D8"
     textSecondary: "#A8A89C"
     textTertiary: "#6A7A72"
+
+    textAccent: teal200
+    colorAccent: teal900
 }

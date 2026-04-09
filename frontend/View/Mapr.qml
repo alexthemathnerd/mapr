@@ -48,6 +48,9 @@ ApplicationWindow {
                     MapLayerList {
                         Layout.fillWidth: true
                         Layout.preferredHeight: 220
+                        onSelect: layer => {
+                            canvas.layerName = layer.layerName;
+                        }
                     }
                 }
 
@@ -80,20 +83,10 @@ ApplicationWindow {
                 }
             }
 
-            BorderRectangle {
+            MapCanvas {
+                id: canvas
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                color: Theme.colorPrimary
-
-                Text {
-                    anchors.centerIn: parent
-                    text: "Canvas will go here!"
-                    font.family: Theme.fontMono
-                    font.pixelSize: Theme.fontSizeSM
-                    font.weight: Font.Bold
-                    font.capitalization: Font.AllUppercase
-                    color: Theme.textPrimary
-                }
             }
 
             Panel {

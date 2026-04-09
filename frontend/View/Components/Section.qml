@@ -5,11 +5,10 @@ import Themes 1.0
 import Components 1.0
 
 Item {
+    id: root
     property bool hasBottomBorder: true
     property string sectionTitle: ""
     default property alias content: container.children
-
-    id: root
 
     implicitHeight: outerLayout.implicitHeight + outerLayout.spacing * 2
 
@@ -21,9 +20,6 @@ Item {
 
         ColumnLayout {
             id: outerLayout
-            // Anchor left/right/top only — no bottom anchor.
-            // This lets the layout grow to fit its children instead of
-            // being forced to fill the parent height.
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top

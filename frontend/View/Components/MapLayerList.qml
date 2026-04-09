@@ -1,7 +1,6 @@
 pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
-// Basic import forces the unstyled base control — no arrows, no platform hover chrome
 import QtQuick.Controls.Basic
 
 import Themes 1.0
@@ -53,6 +52,8 @@ Item {
         },
     ]
 
+    signal select(MapLayer selectedLayer)
+
     RowLayout {
         anchors.fill: parent
         spacing: Theme.paddingSM
@@ -75,6 +76,7 @@ Item {
             }
 
             delegate: MapLayer {
+                id: currentLayer
                 required property var modelData
                 required property int index
 
@@ -83,7 +85,10 @@ Item {
                 layerName: modelData.name
                 status: modelData.state
                 isSelected: ListView.isCurrentItem
-                onClicked: layerList.currentIndex = index
+                onClicked: {
+                    layerList.currentIndex = index;
+                    root.select(currentLayer);
+                }
             }
         }
 

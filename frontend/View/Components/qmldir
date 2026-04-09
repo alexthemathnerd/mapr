@@ -7,3 +7,6 @@ Panel 1.0 Panel.qml
 Section 1.0 Section.qml
 MapLayer 1.0 MapLayer.qml
 MapLayerList 1.0 MapLayerList.qml
+MapCanvas 1.0 MapCanvas.qml
+CanvasBar 1.0 CanvasBar.qml
+CanvasFooter 1.0 CanvasFooter.qml

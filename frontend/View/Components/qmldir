@@ -2,6 +2,7 @@ module View.Components
 BorderRectangle 1.0 BorderRectangle.qml
 WindowButton 1.0 WindowButton.qml
 WindowBar 1.0 WindowBar.qml
+WindowResize 1.0 WindowResize.qml
 Panel 1.0 Panel.qml
 Section 1.0 Section.qml
 MapLayer 1.0 MapLayer.qml

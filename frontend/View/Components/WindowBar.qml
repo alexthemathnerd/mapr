@@ -10,15 +10,54 @@ Item {
     BorderRectangle {
         anchors.fill: parent
         color: Theme.colorSecondary
-        topLeftRadius: Theme.radiusLG
-        topRightRadius: Theme.radiusLG
+        topLeftRadius: Window.window.visibility !== Window.Maximized ? Theme.radiusLG : 0
+        topRightRadius: Window.window.visibility !== Window.Maximized ? Theme.radiusLG : 0
         borders.color: Theme.colorBorder
         borders.bottom.width: Theme.borderSM
 
-
         MouseArea {
             anchors.fill: parent
-            onPressed:    Window.window.startSystemMove()
+
+            property bool isDragging: false
+            property real startWinX: 0
+            property real startWinY: 0
+            property real startCursorX: 0
+            property real startCursorY: 0
+
+            onPressed: isDragging = false
+
+            onPositionChanged: {
+                if (!pressed)
+                    return;
+                var cursor = mapToGlobal(mouseX, mouseY);
+
+                if (!isDragging) {
+                    isDragging = true;
+
+                    if (Window.window.visibility === Window.Maximized) {
+                        const barRatio = mouseX / width;
+                        Window.window.showNormal();
+                        Window.window.x = cursor.x - barRatio * Window.window.width;
+                        Window.window.y = 0;
+                    }
+
+                    startWinX = Window.window.x;
+                    startWinY = Window.window.y;
+                    startCursorX = cursor.x;
+                    startCursorY = cursor.y;
+                    return;
+                }
+
+                Window.window.x = startWinX + (cursor.x - startCursorX);
+                Window.window.y = startWinY + (cursor.y - startCursorY);
+            }
+
+            onReleased: {
+                if (isDragging && Window.window.y <= 10)
+                    Window.window.showMaximized();
+
+                isDragging = false;
+            }
         }
 
         RowLayout {
@@ -31,22 +70,21 @@ Item {
                 icon: "\uE700"
                 onClicked: Theme.toggleTheme()
             }
-            
+
             Rectangle {
-                width: 24
-                height: 24
+                width: 16
+                height: 16
                 radius: Theme.radiusMD
-                color:  "#2DD4BF"
+                color: Theme.colorLogo
 
                 Text {
                     anchors.centerIn: parent
                     text: "\uE81E"
                     color: Theme.textPrimary
                     font.family: "Segoe Fluent Icons"
-                    font.pixelSize: 12
+                    font.pixelSize: 8
                     font.weight: Font.Bold
                 }
-
             }
 
             Text {
@@ -71,7 +109,9 @@ Item {
                 font.pixelSize: Theme.fontSizeMD
             }
 
-            Item { Layout.fillWidth: true }
+            Item {
+                Layout.fillWidth: true
+            }
 
             Row {
                 spacing: 0
@@ -84,15 +124,12 @@ Item {
 
                 WindowButton {
                     id: maximizeButton
-                    icon: "\uE922"
+                    icon: Window.window.visibility === Window.Maximized ? "\uE923" : "\uE922"
                     onClicked: {
-                        if (Window.window.visibility === Window.Maximized) {
-                            Window.window.showNormal()
-                            maximizeButton.icon = "\uE922"
-                        } else {
-                            Window.window.showMaximized()
-                            maximizeButton.icon = "\uE923"
-                        }
+                        if (Window.window.visibility === Window.Maximized)
+                            Window.window.showNormal();
+                        else
+                            Window.window.showMaximized();
                     }
                 }
 

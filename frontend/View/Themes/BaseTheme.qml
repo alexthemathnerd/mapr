@@ -11,6 +11,7 @@ QtObject {
 
     property color textAccent: "transparent"
     property color colorAccent: "transparent"
+    property color colorLogo: "transparent"
 
     property color teal900: "#0A2820"
     property color teal800: "#085041"

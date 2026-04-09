@@ -11,4 +11,5 @@ BaseTheme {
 
     textAccent: teal800
     colorAccent: teal50
+    colorLogo: teal400
 }

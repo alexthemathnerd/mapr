@@ -15,7 +15,11 @@ ApplicationWindow {
     minimumWidth: 1280
     minimumHeight: 800
     flags: Qt.Window | Qt.FramelessWindowHint | Qt.CustomizeWindowHint
-    color: "transparent"
+    color: root.visibility === Window.Maximized ? Theme.colorPrimary : "transparent"
+
+    WindowResize {
+        anchors.fill: parent
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -23,7 +27,7 @@ ApplicationWindow {
 
         WindowBar {
             Layout.fillWidth: true
-            Layout.preferredHeight: 48
+            Layout.preferredHeight: 32
         }
 
         RowLayout {

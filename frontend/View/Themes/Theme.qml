@@ -22,11 +22,19 @@ QtObject {
 
     readonly property color textAccent: theme.textAccent
     readonly property color colorAccent: theme.colorAccent
+    readonly property color colorLogo: theme.colorLogo
+
+    readonly property color teal900: theme.teal900
+    readonly property color teal800: theme.teal800
+    readonly property color teal600: theme.teal600
+    readonly property color teal400: theme.teal400
+    readonly property color teal200: theme.teal200
+    readonly property color teal50: theme.teal50
 
     readonly property string fontSans: "IBM Plex Sans"
     readonly property string fontMono: "IBM Plex Mono"
 
-    readonly property int fontSizeLG: 18
+    readonly property int fontSizeLG: 14
     readonly property int fontSizeMD: 12
     readonly property int fontSizeSM: 10
 

@@ -7,10 +7,12 @@ import Components 1.0
 Item {
     id: root
     property bool hasBottomBorder: true
+    property bool expand: false
     property string sectionTitle: ""
     default property alias content: container.children
 
-    implicitHeight: outerLayout.implicitHeight + outerLayout.spacing * 2
+    Layout.fillHeight: root.expand
+    implicitHeight: root.expand ? 0 : outerLayout.implicitHeight + outerLayout.spacing * 2
 
     BorderRectangle {
         anchors.fill: parent
@@ -23,6 +25,7 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
+            anchors.bottom: root.expand ? parent.bottom : undefined
             anchors.margins: Theme.paddingLG
             spacing: Theme.paddingLG
 
@@ -39,6 +42,7 @@ Item {
             ColumnLayout {
                 id: container
                 Layout.fillWidth: true
+                Layout.fillHeight: root.expand
                 spacing: 0
             }
         }

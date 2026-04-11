@@ -10,3 +10,6 @@ MapLayerList 1.0 MapLayerList.qml
 MapCanvas 1.0 MapCanvas.qml
 CanvasBar 1.0 CanvasBar.qml
 CanvasFooter 1.0 CanvasFooter.qml
+Action 1.0 Action.qml
+HistoryItem 1.0 HistoryItem.qml
+HistoryList 1.0 HistoryList.qml

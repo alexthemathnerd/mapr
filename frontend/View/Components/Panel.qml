@@ -26,11 +26,8 @@ Item {
             ColumnLayout {
                 id: container
                 Layout.fillWidth: true
-                spacing: 0
-            }
-
-            Item {
                 Layout.fillHeight: true
+                spacing: 0
             }
         }
     }

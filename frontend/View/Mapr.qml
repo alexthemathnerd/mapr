@@ -72,13 +72,11 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     sectionTitle: "History"
                     hasBottomBorder: false
+                    expand: true
 
-                    Rectangle {
-                        border.color: Theme.colorBorder
-                        radius: Theme.radiusMD
+                    HistoryList {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 150
-                        color: Theme.colorPrimary
+                        Layout.fillHeight: true
                     }
                 }
             }

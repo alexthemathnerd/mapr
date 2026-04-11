@@ -75,6 +75,7 @@ ApplicationWindow {
                     expand: true
 
                     HistoryList {
+                        id: projectHistory
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                     }
@@ -83,6 +84,7 @@ ApplicationWindow {
 
             MapCanvas {
                 id: canvas
+                lastAction: projectHistory.lastAction
                 Layout.fillWidth: true
                 Layout.fillHeight: true
             }

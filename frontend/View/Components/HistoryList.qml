@@ -9,9 +9,7 @@ import Components 1.0
 Item {
     id: root
 
-    readonly property string lastAction: mockActions.length > 0
-        ? mockActions[mockActions.length - 1].action
-        : ""
+    readonly property string lastAction: mockActions.length > 0 ? mockActions[mockActions.length - 1].action : ""
 
     readonly property var mockActions: [
         {

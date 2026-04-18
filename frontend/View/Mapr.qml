@@ -56,15 +56,54 @@ ApplicationWindow {
 
                 Section {
                     Layout.fillWidth: true
-
                     sectionTitle: "Parameters"
 
-                    Rectangle {
-                        border.color: Theme.colorBorder
-                        radius: Theme.radiusMD
+                    ParameterList {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 150
-                        color: Theme.colorPrimary
+                        mockParameters: [
+                            {
+                                type: "random",
+                                label: "Seed",
+                                value: 0,
+                                defaultValue: 0,
+                                min: 0,
+                                max: 999999
+                            },
+                            {
+                                type: "number",
+                                label: "Scale",
+                                value: 5.0,
+                                defaultValue: 5.0,
+                                min: 0.1,
+                                max: 50.0,
+                                step: 0.5
+                            },
+                            {
+                                type: "boolean",
+                                label: "Islands",
+                                value: true,
+                                defaultValue: true
+                            },
+                            {
+                                type: "season",
+                                label: "Season",
+                                value: false,
+                                defaultValue: false
+                            },
+                            {
+                                type: "enum",
+                                label: "Biome",
+                                value: 0,
+                                defaultValue: 0,
+                                options: ["Temperate", "Desert", "Arctic", "Tropical"]
+                            },
+                            {
+                                type: "cmap",
+                                label: "Color Map",
+                                value: 0,
+                                defaultValue: 0
+                            }
+                        ]
                     }
                 }
 
@@ -112,12 +151,8 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     sectionTitle: "Generation Configuration"
 
-                    Rectangle {
-                        border.color: Theme.colorBorder
-                        radius: Theme.radiusMD
+                    GenConfig {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 150
-                        color: Theme.colorPrimary
                     }
                 }
 
@@ -125,13 +160,13 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     sectionTitle: "Display Configuration"
 
-                    Rectangle {
-                        border.color: Theme.colorBorder
-                        radius: Theme.radiusMD
+                    DisplayConfig {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 150
-                        color: Theme.colorPrimary
                     }
+                }
+
+                Item {
+                    Layout.fillHeight: true
                 }
             }
         }

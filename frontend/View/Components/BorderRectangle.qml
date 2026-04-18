@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 Rectangle {
+    id: root
     component Border: QtObject {
         property int width: 0
         property color color: "transparent"
@@ -31,8 +32,6 @@ Rectangle {
 
     property Borders borders: Borders {}
     default property alias content: container.children
-
-    id: root
 
     ColumnLayout {
         anchors.fill: parent
@@ -77,6 +76,5 @@ Rectangle {
             color: root.borders.bottom.color
             visible: root.borders.bottom.width > 0
         }
-
     }
 }

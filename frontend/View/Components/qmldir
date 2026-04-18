@@ -13,3 +13,13 @@ CanvasFooter 1.0 CanvasFooter.qml
 Action 1.0 Action.qml
 HistoryItem 1.0 HistoryItem.qml
 HistoryList 1.0 HistoryList.qml
+ParameterBase 1.0 ParameterBase.qml
+ParameterNumber 1.0 ParameterNumber.qml
+ParameterRandom 1.0 ParameterRandom.qml
+ParameterBoolean 1.0 ParameterBoolean.qml
+ParameterSeason 1.0 ParameterSeason.qml
+ParameterEnum 1.0 ParameterEnum.qml
+ParameterCmap 1.0 ParameterCmap.qml
+ParameterList 1.0 ParameterList.qml
+GenConfig 1.0 GenConfig.qml
+DisplayConfig 1.0 DisplayConfig.qml

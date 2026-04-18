@@ -1,0 +1,26 @@
+module View.Components
+BorderRectangle 1.0 BorderRectangle.qml
+WindowButton 1.0 WindowButton.qml
+WindowBar 1.0 WindowBar.qml
+WindowResize 1.0 WindowResize.qml
+Panel 1.0 Panel.qml
+Section 1.0 Section.qml
+MapLayer 1.0 MapLayer.qml
+MapLayerList 1.0 MapLayerList.qml
+MapCanvas 1.0 MapCanvas.qml
+CanvasBar 1.0 CanvasBar.qml
+CanvasFooter 1.0 CanvasFooter.qml
+Action 1.0 Action.qml
+HistoryItem 1.0 HistoryItem.qml
+HistoryList 1.0 HistoryList.qml
+ParameterBase 1.0 ParameterBase.qml
+ParameterNumber 1.0 ParameterNumber.qml
+ParameterRandom 1.0 ParameterRandom.qml
+ParameterBoolean 1.0 ParameterBoolean.qml
+ParameterSeason 1.0 ParameterSeason.qml
+ParameterEnum 1.0 ParameterEnum.qml
+ParameterCmap 1.0 ParameterCmap.qml
+ParameterList 1.0 ParameterList.qml
+GenConfig 1.0 GenConfig.qml
+DisplayConfig 1.0 DisplayConfig.qml
+AlgorithmConfig 1.0 AlgorithmConfig.qml

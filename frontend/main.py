@@ -19,9 +19,9 @@ def main() -> None:
     app.setOrganizationName("SiGMA")
 
     engine = QQmlApplicationEngine()
-    engine.addImportPath(str(Path(__file__).parent / "View"))
+    engine.addImportPath(str(Path(__file__).parent / "view"))
 
-    qml_path = Path(__file__).parent / "View" / "Mapr.qml"
+    qml_path = Path(__file__).parent / "view" / "Mapr.qml"
     engine.load(str(qml_path))
     sys.exit(app.exec())
 

@@ -138,12 +138,8 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     sectionTitle: "Algorithm"
 
-                    Rectangle {
-                        border.color: Theme.colorBorder
-                        radius: Theme.radiusMD
+                    AlgorithmConfig {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 150
-                        color: Theme.colorPrimary
                     }
                 }
 
@@ -159,9 +155,42 @@ ApplicationWindow {
                 Section {
                     Layout.fillWidth: true
                     sectionTitle: "Display Configuration"
+                    hasBottomBorder: false
 
                     DisplayConfig {
                         Layout.fillWidth: true
+                    }
+                }
+
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.leftMargin: Theme.paddingLG
+                    Layout.rightMargin: Theme.paddingLG
+                    Layout.topMargin: Theme.paddingLG
+                    Layout.preferredHeight: 28
+                    radius: Theme.radiusMD
+                    color: generateArea.containsMouse ? Theme.teal400 : Theme.teal600
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 120
+                        }
+                    }
+
+                    Text {
+                        anchors.centerIn: parent
+                        text: "Generate"
+                        color: Theme.teal50
+                        font.family: Theme.fontSans
+                        font.pixelSize: Theme.fontSizeMD
+                        font.weight: Font.Medium
+                    }
+
+                    MouseArea {
+                        id: generateArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
                     }
                 }
 

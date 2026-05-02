@@ -1,3 +1,4 @@
+// qmllint disable unqualified
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -9,6 +10,7 @@ import Components 1.0
 ApplicationWindow {
     id: root
     visible: true
+    opacity: startupDialog.visible ? 0.0 : 1.0
     title: "Mapr"
     width: 1462
     height: 1004
@@ -16,6 +18,24 @@ ApplicationWindow {
     minimumHeight: 800
     flags: Qt.Window | Qt.FramelessWindowHint | Qt.CustomizeWindowHint
     color: root.visibility === Window.Maximized ? Theme.colorPrimary : "transparent"
+    x: Screen.width / 2 - width / 2
+    y: Screen.height / 2 - height / 2
+    onClosing: close => {
+        close.accepted = true;
+        Qt.quit();
+    }
+
+    StartupDialog {
+        id: startupDialog
+        visible: true
+    }
+
+    Connections {
+        target: startupVM
+        function onProjectSelected(path) {
+            startupDialog.visible = false;
+        }
+    }
 
     WindowResize {
         anchors.fill: parent

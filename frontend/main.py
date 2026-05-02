@@ -11,6 +11,8 @@ if sys.platform == "win32":
 from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine, QQmlDebuggingEnabler
 
+from viewmodels.startup_viewmodel import StartupViewModel
+
 
 def main() -> None:
     QQmlDebuggingEnabler.enableDebugging(True)
@@ -18,12 +20,19 @@ def main() -> None:
     app.setApplicationName("Mapr")
     app.setOrganizationName("SiGMA")
 
+    startup_vm = StartupViewModel()
+
     engine = QQmlApplicationEngine()
+    engine.rootContext().setContextProperty("startupVM", startup_vm)
     engine.addImportPath(str(Path(__file__).parent / "view"))
 
     qml_path = Path(__file__).parent / "view" / "Mapr.qml"
     engine.load(str(qml_path))
-    sys.exit(app.exec())
+
+    app.lastWindowClosed.connect(app.quit)
+    exit_code = app.exec()
+    del engine
+    sys.exit(exit_code)
 
 
 if __name__ == "__main__":

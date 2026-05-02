@@ -24,3 +24,4 @@ ParameterList 1.0 ParameterList.qml
 GenConfig 1.0 GenConfig.qml
 DisplayConfig 1.0 DisplayConfig.qml
 AlgorithmConfig 1.0 AlgorithmConfig.qml
+StartupDialog 1.0 StartupDialog.qml

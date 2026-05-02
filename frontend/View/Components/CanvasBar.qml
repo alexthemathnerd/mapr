@@ -8,6 +8,10 @@ Item {
     id: root
     property string layerName: "Height"
 
+    signal zoomIn()
+    signal zoomOut()
+    signal zoomToFit()
+
     implicitHeight: outerLayout.implicitHeight + outerLayout.spacing * 2
 
     BorderRectangle {
@@ -40,16 +44,19 @@ Item {
                 WindowButton {
                     id: zoomOutButton
                     icon: "\uE71F"
+                    onClicked: root.zoomOut()
                 }
 
                 WindowButton {
                     id: zoomInButton
                     icon: "\uE8A3"
+                    onClicked: root.zoomIn()
                 }
 
                 WindowButton {
                     id: zoomFitButton
                     icon: "\uE9A6"
+                    onClicked: root.zoomToFit()
                 }
             }
         }

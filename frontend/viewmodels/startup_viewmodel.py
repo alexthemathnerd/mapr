@@ -55,7 +55,7 @@ class StartupViewModel(QObject):
         self._raw: list[dict] = []
         self._load()
 
-    @Property("QVariantList", notify=recentProjectsChanged)
+    @Property(list, notify=recentProjectsChanged)
     def recentProjects(self) -> list[dict]:
         return [
             {

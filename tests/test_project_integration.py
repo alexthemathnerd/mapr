@@ -235,7 +235,7 @@ class TestProjectLoad:
         self, heightmap: Path, workspace: Path
     ) -> None:
         _, loaded = self._round_trip(heightmap, workspace, ["Rivers", "Biomes"])
-        assert [l.name for l in loaded.layers] == ["Rivers", "Biomes"]
+        assert [layer.name for layer in loaded.layers] == ["Rivers", "Biomes"]
 
     def test_restores_layer_status(self, heightmap: Path, workspace: Path) -> None:
         _, loaded = self._round_trip(heightmap, workspace, ["Rivers"])

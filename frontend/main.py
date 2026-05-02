@@ -13,6 +13,7 @@ from PySide6.QtQml import QQmlApplicationEngine, QQmlDebuggingEnabler, qmlRegist
 
 from map_canvas_item import MapCanvasItem
 from viewmodels.map_canvas_view_model import MapCanvasViewModel
+from viewmodels.startup_viewmodel import StartupViewModel
 
 _ASSETS_DIR = Path(__file__).parent.parent / "assets"
 _TEST_HEIGHTMAP = _ASSETS_DIR / "test_heightmap.png"
@@ -58,8 +59,6 @@ def _generate_test_heightmap() -> None:
 
     p.end()
     img.save(str(_TEST_HEIGHTMAP))
-
-from viewmodels.startup_viewmodel import StartupViewModel
 
 
 def main() -> None:

@@ -59,6 +59,8 @@ def _generate_test_heightmap() -> None:
     p.end()
     img.save(str(_TEST_HEIGHTMAP))
 
+from viewmodels.startup_viewmodel import StartupViewModel
+
 
 def main() -> None:
     QQmlDebuggingEnabler.enableDebugging(True)
@@ -71,8 +73,10 @@ def main() -> None:
 
     if not _TEST_HEIGHTMAP.exists():
         _generate_test_heightmap()
+    startup_vm = StartupViewModel()
 
     engine = QQmlApplicationEngine()
+    engine.rootContext().setContextProperty("startupVM", startup_vm)
     engine.addImportPath(str(Path(__file__).parent / "view"))
     engine.rootContext().setContextProperty(
         "devTestImagePath",
@@ -81,7 +85,11 @@ def main() -> None:
 
     qml_path = Path(__file__).parent / "view" / "Mapr.qml"
     engine.load(str(qml_path))
-    sys.exit(app.exec())
+
+    app.lastWindowClosed.connect(app.quit)
+    exit_code = app.exec()
+    del engine
+    sys.exit(exit_code)
 
 
 if __name__ == "__main__":

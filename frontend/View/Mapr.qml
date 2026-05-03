@@ -37,6 +37,11 @@ ApplicationWindow {
         }
     }
 
+    Shortcut {
+        sequence: StandardKey.Save
+        onActivated: projectVM.save()
+    }
+
     WindowResize {
         anchors.fill: parent
     }
@@ -48,6 +53,8 @@ ApplicationWindow {
         WindowBar {
             Layout.fillWidth: true
             Layout.preferredHeight: 32
+            projectName: projectVM.projectName
+            onSaveRequested: projectVM.save()
         }
 
         RowLayout {
@@ -79,6 +86,7 @@ ApplicationWindow {
                     sectionTitle: "Parameters"
 
                     ParameterList {
+                        id: parameterList
                         Layout.fillWidth: true
                         mockParameters: [
                             {
@@ -159,6 +167,7 @@ ApplicationWindow {
                     sectionTitle: "Algorithm"
 
                     AlgorithmConfig {
+                        id: algorithmConfig
                         Layout.fillWidth: true
                     }
                 }
@@ -168,6 +177,7 @@ ApplicationWindow {
                     sectionTitle: "Generation Configuration"
 
                     GenConfig {
+                        id: genConfig
                         Layout.fillWidth: true
                     }
                 }
@@ -211,6 +221,7 @@ ApplicationWindow {
                         anchors.fill: parent
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
+                        onClicked: projectVM.generate(parameterList.getValues())
                     }
                 }
 

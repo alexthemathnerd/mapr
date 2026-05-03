@@ -11,6 +11,8 @@ Item {
 
     property int value: 0
 
+    readonly property string algorithmKey: algorithms[value].name.toLowerCase().replace(" ", "_")
+
     readonly property var algorithms: [
         {
             name: "Perlin Noise",

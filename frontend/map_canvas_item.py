@@ -2,13 +2,18 @@ from __future__ import annotations
 
 from PySide6.QtCore import Property, Signal, QObject, QRect, QRectF
 from PySide6.QtGui import QPainter, QColor
+from PySide6.QtQml import QmlElement
 from PySide6.QtQuick import QQuickPaintedItem
 
 from viewmodels.map_canvas_view_model import MapCanvasViewModel
 
+QML_IMPORT_NAME = "Components"
+QML_IMPORT_MAJOR_VERSION = 1
+
 _PLACEHOLDER_COLOR = QColor("#808080")
 
 
+@QmlElement
 class MapCanvasItem(QQuickPaintedItem):
     viewModelChanged = Signal()
     backgroundColorChanged = Signal()

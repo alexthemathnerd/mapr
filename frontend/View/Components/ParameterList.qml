@@ -12,6 +12,18 @@ Item {
 
     implicitHeight: paramLayout.implicitHeight
 
+    function getValues() {
+        var result = {};
+        for (var i = 0; i < paramRepeater.count; i++) {
+            var loader = paramRepeater.itemAt(i);
+            if (loader && loader.item && loader.modelData) {
+                var key = loader.modelData.label.toLowerCase().replace(/ /g, "_");
+                result[key] = loader.item.value;
+            }
+        }
+        return result;
+    }
+
     ColumnLayout {
         id: paramLayout
         anchors.left: parent.left
@@ -20,6 +32,7 @@ Item {
         spacing: 0
 
         Repeater {
+            id: paramRepeater
             model: root.mockParameters
 
             Loader {

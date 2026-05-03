@@ -4,7 +4,7 @@ import json
 import shutil
 from pathlib import Path
 
-from frontend.models.project import LayerState, ProjectState
+from models.project import LayerState, ProjectState
 
 _CONFIG_FILE = "config.json"
 _LAYERS_DIR = "layers"

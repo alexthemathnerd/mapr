@@ -13,6 +13,7 @@ from PySide6.QtQml import QQmlApplicationEngine, QQmlDebuggingEnabler
 
 import map_canvas_item  # noqa: F401  # registers MapCanvasItem via @QmlElement
 import viewmodels.map_canvas_view_model  # noqa: F401  # registers MapCanvasViewModel via @QmlElement
+from viewmodels.project_viewmodel import ProjectViewModel
 from viewmodels.startup_viewmodel import StartupViewModel
 
 _ASSETS_DIR = Path(__file__).parent.parent / "assets"
@@ -70,9 +71,12 @@ def main() -> None:
     if not _TEST_HEIGHTMAP.exists():
         _generate_test_heightmap()
     startup_vm = StartupViewModel()
+    project_vm = ProjectViewModel()
+    startup_vm.projectSelected.connect(project_vm.loadProject)
 
     engine = QQmlApplicationEngine()
     engine.rootContext().setContextProperty("startupVM", startup_vm)
+    engine.rootContext().setContextProperty("projectVM", project_vm)
     engine.addImportPath(str(Path(__file__).parent / "view"))
     engine.rootContext().setContextProperty(
         "devTestImagePath",

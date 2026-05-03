@@ -8,7 +8,7 @@ from pathlib import Path
 class LayerState:
     name: str
     status: str  # "ready" | "empty" | "locked"
-    image_path: str  # relative to project folder
+    data_path: str  # relative to project folder, .npy file
     hyperparameters: dict = field(default_factory=dict)
 
 

@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-import shutil
 from pathlib import Path
 
+import numpy as np
 from PySide6.QtCore import Property, QObject, Signal, Slot
 
 from models.project import LayerState
@@ -43,34 +43,30 @@ class ProjectViewModel(QObject):
         if self._state:
             ProjectManager.save(self._state)
 
-    @Slot(str, "QVariantMap")
-    def generate(self, algorithm: str, params: dict) -> None:
+    @Slot("QVariantMap")
+    def generate(self, params: dict) -> None:
         """Record a generation run with its hyperparameters and auto-save.
 
-        Until the generation backend exists, the heightmap is copied as a
-        placeholder so the project folder stays self-contained.
+        Saves a NumPy zeros array as a placeholder until the generation
+        backend produces real data.
         """
         if not self._state:
             return
 
-        hyperparams = {"algorithm": algorithm, **params}
-        layer_name = algorithm.replace("_", " ").title()
+        index = len(self._state.layers) + 1
+        layer_name = f"Layer {index}"
+        data_filename = f"layer_{index}.npy"
+        data_rel = f"{_LAYERS_DIR}/{data_filename}"
+        data_abs = self._state.folder / data_rel
 
-        existing = sum(1 for la in self._state.layers if la.name.startswith(layer_name))
-        suffix = f" {existing + 1}" if existing else ""
-
-        src = self._state.folder / self._state.heightmap_path
-        img_filename = f"{algorithm}{suffix.replace(' ', '_')}.png"
-        img_rel = f"{_LAYERS_DIR}/{img_filename}"
-        img_abs = self._state.folder / img_rel
-        shutil.copy2(src, img_abs)
+        np.save(str(data_abs), np.zeros((0,), dtype=np.float32))
 
         self._state.layers.append(
             LayerState(
-                name=f"{layer_name}{suffix}",
+                name=layer_name,
                 status="ready",
-                image_path=img_rel,
-                hyperparameters=hyperparams,
+                data_path=data_rel,
+                hyperparameters=dict(params),
             )
         )
         ProjectManager.save(self._state)

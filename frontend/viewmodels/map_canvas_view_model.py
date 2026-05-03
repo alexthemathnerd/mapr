@@ -2,12 +2,17 @@ from __future__ import annotations
 
 from PySide6.QtCore import QObject, Property, Signal, Slot
 from PySide6.QtGui import QImage
+from PySide6.QtQml import QmlElement
+
+QML_IMPORT_NAME = "Components"
+QML_IMPORT_MAJOR_VERSION = 1
 
 _ZOOM_MIN = 0.1
 _ZOOM_MAX = 8.0
 _ZOOM_STEP = 1.25
 
 
+@QmlElement
 class MapCanvasViewModel(QObject):
     zoomChanged = Signal()
     panChanged = Signal()

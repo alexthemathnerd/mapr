@@ -56,6 +56,7 @@ class ProjectManager:
                     name=layer["name"],
                     status=layer["status"],
                     image_path=layer["image"],
+                    hyperparameters=layer.get("params", {}),
                 )
                 for layer in data.get("layers", [])
             ]
@@ -76,7 +77,12 @@ class ProjectManager:
             "name": state.name,
             "heightmap": state.heightmap_path,
             "layers": [
-                {"name": layer.name, "status": layer.status, "image": layer.image_path}
+                {
+                    "name": layer.name,
+                    "status": layer.status,
+                    "image": layer.image_path,
+                    "params": layer.hyperparameters,
+                }
                 for layer in state.layers
             ],
         }

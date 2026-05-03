@@ -9,10 +9,10 @@ if sys.platform == "win32":
     os.add_dll_directory(str(Path(PySide6.__file__).parent))
 
 from PySide6.QtGui import QGuiApplication, QImage, QPainter, QRadialGradient, QColor
-from PySide6.QtQml import QQmlApplicationEngine, QQmlDebuggingEnabler, qmlRegisterType
+from PySide6.QtQml import QQmlApplicationEngine, QQmlDebuggingEnabler
 
-from map_canvas_item import MapCanvasItem
-from viewmodels.map_canvas_view_model import MapCanvasViewModel
+import map_canvas_item  # noqa: F401  # registers MapCanvasItem via @QmlElement
+import viewmodels.map_canvas_view_model  # noqa: F401  # registers MapCanvasViewModel via @QmlElement
 from viewmodels.startup_viewmodel import StartupViewModel
 
 _ASSETS_DIR = Path(__file__).parent.parent / "assets"
@@ -66,9 +66,6 @@ def main() -> None:
     app = QGuiApplication(sys.argv)
     app.setApplicationName("Mapr")
     app.setOrganizationName("SiGMA")
-
-    qmlRegisterType(MapCanvasItem, b"Components", 1, 0, b"MapCanvasItem")
-    qmlRegisterType(MapCanvasViewModel, b"Components", 1, 0, b"MapCanvasViewModel")
 
     if not _TEST_HEIGHTMAP.exists():
         _generate_test_heightmap()

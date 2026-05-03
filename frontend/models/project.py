@@ -9,6 +9,7 @@ class LayerState:
     name: str
     status: str  # "ready" | "empty" | "locked"
     image_path: str  # relative to project folder
+    hyperparameters: dict = field(default_factory=dict)
 
 
 @dataclass

@@ -195,6 +195,40 @@ class TestProjectSave:
         config = json.loads((state.folder / "config.json").read_text())
         assert len(config["layers"]) == 3
 
+    def test_config_records_hyperparameters(
+        self, heightmap: Path, workspace: Path
+    ) -> None:
+        state = ProjectManager.create(heightmap, workspace)
+        params = {"algorithm": "perlin_noise", "seed": 42, "scale": 5.0}
+        img = state.folder / "layers" / "rivers.png"
+        img.write_bytes(_make_png())
+        state.layers.append(
+            LayerState(
+                name="Rivers",
+                status="ready",
+                image_path="layers/rivers.png",
+                hyperparameters=params,
+            )
+        )
+        ProjectManager.save(state)
+
+        config = json.loads((state.folder / "config.json").read_text())
+        assert config["layers"][0]["params"] == params
+
+    def test_empty_hyperparameters_written_as_empty_dict(
+        self, heightmap: Path, workspace: Path
+    ) -> None:
+        state = ProjectManager.create(heightmap, workspace)
+        img = state.folder / "layers" / "rivers.png"
+        img.write_bytes(_make_png())
+        state.layers.append(
+            LayerState(name="Rivers", status="ready", image_path="layers/rivers.png")
+        )
+        ProjectManager.save(state)
+
+        config = json.loads((state.folder / "config.json").read_text())
+        assert config["layers"][0]["params"] == {}
+
 
 # ---------------------------------------------------------------------------
 # AC3: Load — full state restored after round-trip
@@ -259,6 +293,37 @@ class TestProjectLoad:
     ) -> None:
         _, loaded = self._round_trip(heightmap, workspace)
         assert (loaded.folder / loaded.heightmap_path).is_file()
+
+    def test_restores_layer_hyperparameters(
+        self, heightmap: Path, workspace: Path
+    ) -> None:
+        params = {"algorithm": "simplex", "seed": 7, "iterations": 3}
+        state = ProjectManager.create(heightmap, workspace)
+        img = state.folder / "layers" / "rivers.png"
+        img.write_bytes(_make_png())
+        state.layers.append(
+            LayerState(
+                name="Rivers",
+                status="ready",
+                image_path="layers/rivers.png",
+                hyperparameters=params,
+            )
+        )
+        ProjectManager.save(state)
+        loaded = ProjectManager.load(state.folder)
+        assert loaded.layers[0].hyperparameters == params
+
+    def test_missing_params_key_defaults_to_empty_dict(
+        self, heightmap: Path, workspace: Path
+    ) -> None:
+        state = ProjectManager.create(heightmap, workspace)
+        # Write config without params key (simulates old format)
+        config_path = state.folder / "config.json"
+        config = json.loads(config_path.read_text())
+        config["layers"] = [{"name": "Rivers", "status": "ready", "image": "layers/rivers.png"}]
+        config_path.write_text(json.dumps(config), encoding="utf-8")
+        loaded = ProjectManager.load(state.folder)
+        assert loaded.layers[0].hyperparameters == {}
 
 
 # ---------------------------------------------------------------------------
